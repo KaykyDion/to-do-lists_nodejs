@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do Lists Manager</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
+  </head>
+  <body>
+    <%- include("partials/header") %>
+    <main class="container mt-4">
+      <h2 class="text-center">To-Do Lists</h2>
+      <ul class="bg-dark rounded">
+        <% lists.forEach(list => {%>
+        <li class="d-flex justify-content-between mb-2 p-3">
+          <a href="<%=`/app/${list.id}`%>"><h3><%= list.name %></h3></a>
+          <form action="app/delete/<%=list.id%>" method="post">
+            <button class="btn btn-danger">Delete</button>
+          </form>
+        </li>
+        <% }) %>
+      </ul>
+      <a
+        class="btn btn-primary d-flex justify-content-center"
+        href="/app/newToDoList"
+        >Create new list</a
+      >
+    </main>
+  </body>
+</html>

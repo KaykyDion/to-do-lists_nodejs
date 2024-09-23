@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do Lists Manager</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
+  </head>
+  <body>
+    <%- include("partials/header") %>
+    <main class="container">
+      <h1 class="mt-5"><%= list.name %></h1>
+      <form class="my-5" action="/app/<%=list.id%>/newTask" method="post">
+        <div class="input-group">
+          <input
+            class="col-11 rounded-start"
+            type="text"
+            name="taskName"
+            placeholder="Add new task..."
+          />
+          <button class="btn btn-primary col-1">Add</button>
+        </div>
+      </form>
+      <ul class="list-group">
+        <% list.tasks.forEach(task => { %>
+        <li
+          class="d-flex border border-secondary-subtle <%=task.isCompleted ? "bg-success text-light" : ""%> rounded align-items-center justify-content-between p-2 mb-2"
+        >
+          <%= task.name %>
+          <% if (task.isCompleted) { %>
+            <p class="text-light m-0">Completed!</p>
+          <% } else { %>
+            <form action="/app/<%=list.id%>/<%=task.id%>" method="post">
+              <button class='btn btn-success'>Complete</button>
+            </form>
+          <%}%>
+            
+        </li>
+        <% }) %>
+      </ul>
+    </main>
+  </body>
+</html>
