@@ -15,6 +15,7 @@ router.post("/app/delete/:id", listsController.delete);
 
 router.get("/app/:id", toDoListController.index);
 router.post("/app/:id/newTask", toDoListController.newTask);
+router.post("/app/:listId/delete/:taskId", toDoListController.deleteTask);
 router.post("/app/:listId/:taskId", toDoListController.completeTask);
 
 module.exports = router;

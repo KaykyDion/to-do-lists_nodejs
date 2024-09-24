@@ -66,6 +66,10 @@ const listsModel = {
 
     task.isCompleted = true;
   },
+  deleteTask(listId, taskId) {
+    let list = this.getListById(listId);
+    list.tasks = list.tasks.filter((task) => task.id !== taskId);
+  },
   deleteList: (id) => {
     lists = lists.filter((list) => list.id !== id);
   },

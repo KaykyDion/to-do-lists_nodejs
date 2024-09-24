@@ -18,6 +18,11 @@ const toDoListController = {
     listsModel.markTaskAsCompleted(listId, taskId);
     res.redirect(`/app/${listId}`);
   },
+  deleteTask: (req, res) => {
+    const { listId, taskId } = req.params;
+    listsModel.deleteTask(listId, taskId);
+    res.redirect(`/app/${listId}`);
+  },
 };
 
 module.exports = toDoListController;
